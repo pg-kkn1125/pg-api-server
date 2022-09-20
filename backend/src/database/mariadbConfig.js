@@ -3,6 +3,7 @@ require("dotenv").config({
   path: path.join(__dirname, "./../../.env"),
 });
 
+// mariadb informations
 const {
   MARIADB_PORT,
   MARIADB_HOST,
@@ -10,8 +11,6 @@ const {
   MARIADB_PW,
   MARIADB_DATABASE,
 } = process.env;
-
-console.log(process.env.MARIADB_USERNAME);
 
 module.exports = {
   host: MARIADB_HOST,

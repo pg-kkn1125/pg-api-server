@@ -6,7 +6,7 @@ userRouter.get("/users", (req, res) => {
   userService.findAll(req, res);
 });
 
-userRouter.get("/users/:id", (req, res) => {
+userRouter.get('^/users/:id([0-9]+)', (req, res) => {
   userService.findById(req, res);
 });
 

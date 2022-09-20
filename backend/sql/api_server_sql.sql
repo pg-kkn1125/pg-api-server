@@ -18,7 +18,7 @@ USE `api_server` ;
 -- Table `api_server`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `api_server`.`user` (
-  `id` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NOT NULL,
   `name` VARCHAR(45) NULL DEFAULT '',
   `password` VARCHAR(45) NOT NULL,
@@ -27,18 +27,29 @@ CREATE TABLE IF NOT EXISTS `api_server`.`user` (
   `nation` VARCHAR(45) NULL,
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
+  PRIMARY KEY (`id`))default CHARACTER SET utf8 
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `api_server`.`product`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `api_server`.`product` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `redirect_url` VARCHAR(100) NOT NULL,
+  `view_info` VARCHAR(45) NOT NULL,
+  `view_start` TIMESTAMP NOT NULL,
+  `view_end` TIMESTAMP NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`))default CHARACTER SET utf8 
+ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+use api_server;
+select * from user;
 
-show tables;
-use mysql;
-select user, host, password from user;
-desc user;
-
--- update mysql.user set password = password('1234') where user = 'root' and host='%'
