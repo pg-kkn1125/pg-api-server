@@ -54,24 +54,30 @@ user.create = (req, res) => {
   });
 };
 
+// 미작업분
 user.update = (req, res) => {
-  sql.query("select * from user", (err, rows) => {
-    if (err) {
-      res.status(500).json({
-        ok: false,
-        message: "error",
-      });
-    } else {
-      res.status(200).json({
-        ok: true,
-        payload: rows,
-      });
+  sql.query(
+    "UPDATE user SET ? WHERE ?",
+    [req.body, req.params],
+    (err, rows) => {
+      if (err) {
+        res.status(500).json({
+          ok: false,
+          message: "error",
+        });
+      } else {
+        res.status(200).json({
+          ok: true,
+          payload: rows,
+        });
+      }
     }
-  });
+  );
 };
 
+// 미작업분
 user.delete = (req, res) => {
-  sql.query("select * from user", (err, rows) => {
+  sql.query("DELETE from user WHERE ?", req.params, (err, rows) => {
     if (err) {
       res.status(500).json({
         ok: false,
